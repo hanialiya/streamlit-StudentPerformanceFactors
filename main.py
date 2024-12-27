@@ -39,10 +39,6 @@ column_data = {
 # Membuat DataFrame
 description_df = pd.DataFrame(column_data)
 
-# Menampilkan DataFrame di Streamlit
-st.subheader("Deskripsi Kolom Dataset")
-st.dataframe(description_df, use_container_width=True)
-
 # Menampilkan 5 baris pertama dataset
 st.subheader('5 Baris Pertama Dataset:')
 st.write(data.head())
