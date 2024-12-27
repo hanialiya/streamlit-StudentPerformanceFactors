@@ -38,20 +38,23 @@ description_df = pd.DataFrame(column_data)
 
 # Menampilkan DataFrame deskripsi kolom tanpa indeks angka
 st.subheader("Deskripsi Kolom Dataset")
-st.write(description_df.style.hide_index()) 
+st.table(description_df)  # Menampilkan tabel tanpa indeks angka
+
 # Menampilkan 5 baris pertama dataset
 st.subheader('5 Baris Pertama Dataset:')
-st.write(data.head().style.hide_index())  # Menyembunyikan kolom indeks
-# Menghitung persentase nilai yang missing
+st.write(data.head())  # Menampilkan 5 baris pertama tanpa indeks angka
+
+# Menghitung missing values dan persentase nilai yang hilang
+missing_values = data.isnull().sum()
 missing_percentage = (missing_values / len(data)) * 100
 
 # Menggabungkan hasil ke sebuah dataframe yang terdiri dari 2 kolom yaitu Jumlah dan persentase nilai yang hilang
 availability_check = pd.DataFrame({
     "Missing_Values": missing_values,
     "Missing_Percentage(%)": missing_percentage
-}).sort_values(by="Missing_Values", ascending=False) # Mengurutkan nilai yang hilang dari yang terbanyak
+}).sort_values(by="Missing_Values", ascending=False)  # Mengurutkan nilai yang hilang dari yang terbanyak
 
-# Menampilkan data frame
+# Menampilkan data frame nilai missing
 st.subheader('Nilai Missing dan Persentase:')
 st.write(availability_check)
 
