@@ -3,16 +3,16 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import streamlit as st
 
-# Mengimport data csv dari file
+#Mengimport data csv dari file
 file_path = "StudentPerformanceFactors.csv"
 
-# Membaca data CSV
+#Membaca data CSV
 data = pd.read_csv(file_path)
 
-# Menampilkan informasi dataset
-st.title('Analisis Dataset Performance Mahasiswa')
+#Menampilkan informasi dataset
+st.title('Analisis Dataset Performance Mahasiswa by Hani Aliya')
 
-# Data deskripsi kolom
+#Data deskripsi kolom
 column_data = {
     "Kolom": [
         "gender", "age", "study_time", "absences", 
@@ -20,11 +20,11 @@ column_data = {
         "internet", "health"
     ],
     "Deskripsi": [
-        "Jenis kelamin siswa (misalnya, Male atau Female).",
+        "Jenis kelamin siswa (Male / Female).",
         "Usia siswa dalam tahun.",
         "Waktu belajar siswa dalam jam per minggu.",
         "Jumlah ketidakhadiran siswa.",
-        "Tingkat pendidikan orang tua siswa (misalnya, High School).",
+        "Tingkat pendidikan orang tua siswa.",
         "Nilai siswa pada ujian pertama.",
         "Nilai siswa pada ujian kedua.",
         "Nilai akhir siswa (target variable).",
@@ -33,43 +33,43 @@ column_data = {
     ]
 }
 
-# Membuat DataFrame deskripsi kolom
+#Membuat DataFrame deskripsi kolom
 description_df = pd.DataFrame(column_data)
 
-# Menampilkan DataFrame deskripsi kolom tanpa indeks angka
+#Menampilkan DataFrame deskripsi kolom 
 st.subheader("Deskripsi Kolom Dataset")
-st.table(description_df)  # Menampilkan tabel tanpa indeks angka
+st.table(description_df)  
 
-# Menampilkan 5 baris pertama dataset
+#Menampilkan 5 baris pertama dataset
 st.subheader('5 Baris Pertama Dataset:')
 st.write(data.head())  # Menampilkan 5 baris pertama tanpa indeks angka
 
-# Menghitung missing values dan persentase nilai yang hilang
+#Menghitung missing values dan persentase nilai yang hilang
 missing_values = data.isnull().sum()
 missing_percentage = (missing_values / len(data)) * 100
 
-# Menggabungkan hasil ke sebuah dataframe yang terdiri dari 2 kolom yaitu Jumlah dan persentase nilai yang hilang
+#Menggabungkan hasil ke sebuah dataframe yang terdiri dari 2 kolom yaitu Jumlah dan persentase nilai yang hilang
 availability_check = pd.DataFrame({
     "Missing_Values": missing_values,
     "Missing_Percentage(%)": missing_percentage
-}).sort_values(by="Missing_Values", ascending=False)  # Mengurutkan nilai yang hilang dari yang terbanyak
+}).sort_values(by="Missing_Values", ascending=False)  #Mengurutkan nilai yang hilang dari yang terbanyak
 
-# Menampilkan data frame nilai missing
+#Menampilkan data frame nilai missing
 st.subheader('Nilai Missing dan Persentase:')
 st.write(availability_check)
 
-# Descriptive statistik untuk kolom-kolom numerik
+#Descriptive statistik untuk kolom-kolom numerik
 numerical_stats = data.describe()
 st.subheader('Descriptive Statistik untuk Kolom Numerik:')
 st.write(numerical_stats)
 
-# Memilih kolom-kolom dengan tipe data object
+#Memilih kolom-kolom dengan tipe data object
 categorical_columns = data.select_dtypes(include='object').columns
 
-# Menghitung jumlah kemunculan tiap kategori pada kolom
+#Menghitung jumlah kemunculan tiap kategori pada kolom
 categorical_stats = {col: data[col].value_counts() for col in categorical_columns}
 
-# Menampilkan distribusi frekuensi untuk kolom kategori
+#Menampilkan distribusi frekuensi untuk kolom kategori
 st.subheader('Distribusi Frekuensi untuk Kolom Kategori:')
 for col in categorical_columns:
     st.write(f'Kolom: {col}')
@@ -78,16 +78,16 @@ for col in categorical_columns:
     plt.xticks(rotation=45)
     st.pyplot(fig)
 
-# Menghitung matriks korelasi antar kolom numerik
+#Menghitung matriks korelasi antar kolom numerik
 numeric_columns = data.select_dtypes(include=['number'])
 numeric_columns = numeric_columns.dropna()  # Menghapus baris yang nilainya hilang
 correlation_matrix = numeric_columns.corr()
 
-# Menampilkan matriks korelasi
+#Menampilkan matriks korelasi
 st.subheader('Matriks Korelasi:')
 st.write(correlation_matrix)
 
-# Menampilkan heatmap untuk matriks korelasi
+#Menampilkan heatmap untuk matriks korelasi
 st.subheader('Heatmap Matriks Korelasi:')
 fig = plt.figure(figsize=(10, 8))
 sns.heatmap(correlation_matrix, annot=True, cmap='YlOrRd', fmt=".2f")
