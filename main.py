@@ -15,6 +15,34 @@ st.subheader('Informasi Dataset:')
 data_info = data.info()
 st.text(data_info)
 
+# Data deskripsi kolom
+column_data = {
+    "Kolom": [
+        "gender", "age", "study_time", "absences", 
+        "parental_education", "G1", "G2", "G3", 
+        "internet", "health"
+    ],
+    "Deskripsi": [
+        "Jenis kelamin siswa (misalnya, Male atau Female).",
+        "Usia siswa dalam tahun.",
+        "Waktu belajar siswa dalam jam per minggu.",
+        "Jumlah ketidakhadiran siswa.",
+        "Tingkat pendidikan orang tua siswa (misalnya, High School).",
+        "Nilai siswa pada ujian pertama.",
+        "Nilai siswa pada ujian kedua.",
+        "Nilai akhir siswa (target variable).",
+        "Akses siswa ke internet di rumah (Yes/No).",
+        "Status kesehatan siswa (skala 1-5)."
+    ]
+}
+
+# Membuat DataFrame
+description_df = pd.DataFrame(column_data)
+
+# Menampilkan DataFrame di Streamlit
+st.subheader("Deskripsi Kolom Dataset")
+st.dataframe(description_df, use_container_width=True)
+
 # Menampilkan 5 baris pertama dataset
 st.subheader('5 Baris Pertama Dataset:')
 st.write(data.head())
