@@ -38,8 +38,11 @@ description_df = pd.DataFrame(column_data)
 
 # Menampilkan DataFrame deskripsi kolom tanpa indeks angka
 st.subheader("Deskripsi Kolom Dataset")
-st.table(description_df)
+st.write(description_df.style.hide_index())  # Menyembunyikan kolom indeks
 
+# Menampilkan 5 baris pertama dataset
+st.subheader('5 Baris Pertama Dataset:')
+st.write(data.head().style.hide_index())  # Menyembunyikan kolom indeks
 # Menghitung persentase nilai yang missing
 missing_percentage = (missing_values / len(data)) * 100
 
