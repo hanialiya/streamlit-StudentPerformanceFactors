@@ -33,12 +33,12 @@ column_data = {
     ]
 }
 
-# Membuat DataFrame deskripsi kolom
+# Membuat DataFrame
 description_df = pd.DataFrame(column_data)
 
 # Menampilkan DataFrame deskripsi kolom tanpa indeks angka
 st.subheader("Deskripsi Kolom Dataset")
-st.table(description_df)
+st.dataframe(description_df.style.hide_index(), use_container_width=True)
 
 # Menampilkan 5 baris pertama dataset
 st.subheader('5 Baris Pertama Dataset:')
