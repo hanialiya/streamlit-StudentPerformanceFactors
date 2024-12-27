@@ -11,6 +11,7 @@ data = pd.read_csv(file_path)
 
 # Menampilkan informasi dataset
 st.title('Analisis Dataset Performance Mahasiswa')
+
 # Data deskripsi kolom
 column_data = {
     "Kolom": [
@@ -34,10 +35,10 @@ column_data = {
 
 # Membuat DataFrame
 description_df = pd.DataFrame(column_data)
-st.subheader('Informasi Dataset:')
-data_info = data.info()
-st.text(data_info)
 
+# Menampilkan DataFrame di Streamlit
+st.subheader("Deskripsi Kolom Dataset")
+st.dataframe(description_df, use_container_width=True)
 
 
 # Menampilkan 5 baris pertama dataset
