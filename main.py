@@ -33,14 +33,12 @@ column_data = {
     ]
 }
 
-# Membuat DataFrame
+# Membuat DataFrame deskripsi kolom
 description_df = pd.DataFrame(column_data)
 
 # Menampilkan DataFrame deskripsi kolom tanpa indeks angka
 st.subheader("Deskripsi Kolom Dataset")
-st.dataframe(description_df.style.hide_index(), use_container_width=True)
-# Menghitung jumlah nilai yang missing 
-missing_values = data.isnull().sum()
+st.table(description_df)
 
 # Menghitung persentase nilai yang missing
 missing_percentage = (missing_values / len(data)) * 100
