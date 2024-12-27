@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import streamlit as st
 
 # Mengimport data csv dari file
-file_path = "D:/file my doc/PythonProject/GDGoC/StudentPerformanceFactors.csv"
+file_path = "StudentPerformanceFactors.csv"
 
 # Membaca data CSV
 data = pd.read_csv(file_path)
