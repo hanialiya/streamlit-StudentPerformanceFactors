@@ -33,13 +33,12 @@ column_data = {
     ]
 }
 
-# Membuat DataFrame
+# Membuat DataFrame deskripsi kolom
 description_df = pd.DataFrame(column_data)
 
 # Menampilkan DataFrame deskripsi kolom tanpa indeks angka
 st.subheader("Deskripsi Kolom Dataset")
-st.dataframe(description_df.style.hide_index(), use_container_width=True)
-
+st.write(description_df.style.hide_index()) 
 # Menampilkan 5 baris pertama dataset
 st.subheader('5 Baris Pertama Dataset:')
 st.write(data.head().style.hide_index())  # Menyembunyikan kolom indeks
